@@ -1,0 +1,30 @@
+.main__container{
+    display: inline-block;
+}
+.main__header{
+    background-color: cornflowerblue;
+    width: 25rem;
+    font-size: x-large;
+    margin-bottom: 2em;
+}
+.main-box{
+    background-color: lightblue;
+    text-align: left;
+}
+.main-box__title{
+    background-color: white;
+    font-size: large;
+    font-weight: bold;
+}
+.main-box__menu{
+    padding: 1rem;
+}
+.main-box__subject{
+    font-weight: bold;
+}
+.main-box__goToTestsManagerBtn{
+    background-color: cadetblue;
+}
+.main-box__goToTestsManagerBtn :hover{
+    background-color: gold;
+}
