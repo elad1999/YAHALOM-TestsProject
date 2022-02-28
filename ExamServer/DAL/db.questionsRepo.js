@@ -9,6 +9,12 @@ class DbQuestionsRepo {
         const data = JSON.parse(await readFile(jsonFileName));
         return data;
     }
+    async addQuestion(question){
+
+    }
+    async editQuestion(question){
+        
+    }
 }
 
 module.exports = new DbQuestionsRepo();

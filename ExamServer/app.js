@@ -14,5 +14,5 @@ app.listen(Urls.serverPort, () =>
 
 app.use(bodyParser.json());
 
-app.use("/api/Qestions", questionRouter);
+app.use("/api/Questions", questionRouter);
 app.use("/api/Tests", testRouter);

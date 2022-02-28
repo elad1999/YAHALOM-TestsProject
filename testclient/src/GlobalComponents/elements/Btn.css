@@ -1,0 +1,22 @@
+.Btn {
+    background-color: var(--color-dark-gray);
+    padding: var(--gap-m) var(--gap);
+    color: var(--color-light-gray);
+    width: fit-content;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.Btn[height="small"] {
+    padding: var(--gap-s);
+    border-radius: 5px;
+}
+
+.Btn:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.Btn:active {
+    opacity: 0.9;
+}

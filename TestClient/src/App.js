@@ -1,13 +1,22 @@
-import './App.css';
-import './components/NewTest'
-import NewTest from './components/NewTest';
+import "./App.css";
+import "./Components/NewTest";
+import { Route, Routes } from "react-router-dom";
+import MainMenu from "./views/mainMenu/MainMenu";
+import { EditQuestion, QuestionsManager } from "./views";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <NewTest/>
+      <div className="Container">
+        <Routes>
+          <Route path="/manage-questions" element={<QuestionsManager />}></Route>
+          <Route path="/edit-question" element={<EditQuestion />}></Route>
+          <Route path="/" element={<MainMenu />}></Route>
+          <Route path="*" element={<MainMenu />}></Route>
+        </Routes>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
