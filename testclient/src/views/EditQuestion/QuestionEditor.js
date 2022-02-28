@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import AnswerList from "../../Components/AnswerList";
 import { Btn, Dropdown, Input, Line } from "../../GlobalComponents";
 import Field from "../../GlobalComponents/Field";
 import { saveQuestion } from "../../Services/questionService";
 import "./QuestionEditor.css";
 const QuestionEditor = (props) => {
+  const location=useLocation();
+  const [id, setId] = useState("");
   const [field, setField] = useState("");
   const [type, setType] = useState(1);
   const [text, setText] = useState("");
@@ -17,9 +20,11 @@ const QuestionEditor = (props) => {
     { id: 2, value: "Multiple Selection Question" },
   ];
   useEffect(() => {
-    if (props.question) {
-      handleQuestion(props.question);
-    }
+    console.log(location)
+    if (location)
+      if (location.question) {
+        handleQuestion(props.question);        
+      }
   }, []);
   const handleType = (value) => {
     setType(value);
@@ -28,18 +33,19 @@ const QuestionEditor = (props) => {
   const handleLowerText = (e) => setLowerText(e.target.value);
   const handleLayout = (e) => setLayout(e.target.value);
   const handleTags = (e) => setTags(e.target.value);
-  const onSave = () => {
+  const onSave = () => {   
     if ((field, type, text, lowerText, answers, layout, tags)) {
       if (answers.length > 1) {
         if (checkIfCorrectExists)
           saveQuestion({
-            field: field,
-            type: list[type-1].value,
-            text: text,
-            lowerText: lowerText,
-            answers: answers,
-            layout: layout,
-            tags: tags,
+            Id: id,
+            Field: field,
+            Type: list[type - 1].value,
+            Text: text,
+            LowerText: lowerText,
+            Answers: answers,
+            Layout: layout,
+            Tags: tags,
           });
       } else {
         window.alert("there must be more then one answer");
@@ -50,40 +56,45 @@ const QuestionEditor = (props) => {
   };
   const checkIfCorrectExists = () => {
     answers.forEach((answer) => {
-      if (answer.correct === true) return true;
+      if (answer.Correct === true) return true;
     });
     return false;
   };
   const handleQuestion = (question) => {
-    setField(question.field);
-    setType("Single Choice Question"===question.type?"Single Choice Question":"Multiple Selection Question");
-    setText(question.text);
-    setLowerText(question.lowerText);
-    setAnswers(question.answers);
-    setLayout(question.layout);
+    setId(question.Id);
+    setField(question.Field);
+    setType(
+      "Single Choice Question" === question.Type
+        ? "Single Choice Question"
+        : "Multiple Selection Question"
+    );
+    setText(question.Text);
+    setLowerText(question.LowerText);
+    setAnswers(question.Answers);
+    setLayout(question.Layout);
     let tagsText = "";
-    question.tags.forEach((element) => {
+    question.Tags.forEach((element) => {
       tagsText += element;
     });
     setTags(tagsText);
   };
   const onAnswerAdd = () => {
-    setAnswers((answers) => [...answers, { content: "", correct: false }]);
+    setAnswers((answers) => [...answers, { Content: "", Correct: false }]);
   };
-  const onAnswerChanged=(index,event)=>{
-    let tmpanswers=[...answers];
-    tmpanswers[index].content=event.target.value;
+  const onAnswerChanged = (index, event) => {
+    let tmpanswers = [...answers];
+    tmpanswers[index].Content = event.target.value;
     setAnswers(tmpanswers);
-  }
-  const onRemoveAnswer = (index,event) => {     
-    setAnswers(answers.filter((x,i)=>i!==index));
+  };
+  const onRemoveAnswer = (index, event) => {
+    setAnswers(answers.filter((x, i) => i !== index));
   };
   const onSelectedChanged = (index) => {
     let tmpanswers = [...answers];
     if (type === 1) {
-      tmpanswers.forEach((answer) => (answer.correct = false));
-      tmpanswers[index].correct = true;
-    } else tmpanswers[index].correct = !tmpanswers[index].correct;
+      tmpanswers.forEach((answer) => (answer.Correct = false));
+      tmpanswers[index].Correct = true;
+    } else tmpanswers[index].Correct = !tmpanswers[index].Correct;
     setAnswers(tmpanswers);
   };
   return (
@@ -100,7 +111,7 @@ const QuestionEditor = (props) => {
             <b>{field}</b>
           </div>
           Question type:{" "}
-          <Dropdown selected={(type)} list={list} onChange={handleType} />
+          <Dropdown selected={type} list={list} onChange={handleType} />
           Question text: <Input value={text} onChange={handleText} />
           Text below question:
           <Input value={lowerText} onChange={handleLowerText} />
