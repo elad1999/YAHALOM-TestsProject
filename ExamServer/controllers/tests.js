@@ -4,11 +4,17 @@ class TestsController {
     getAllTests(){
         return db.getAllTests();
     }
-    getTestsBySubject(subjectId){
-        return db.getAllTestsBySubject(subjectId);
+    getSubjects(){
+        return db.getAllSubjects();
     }
+    // getTestsBySubject(subjectId){
+    //     return db.getAllTestsBySubject(subjectId);
+    // }
     addTest(test){
         return db.addTest(test);
+    }
+    getAllQuestions(){
+        return db.getAllQuestions();
     }
 } 
 

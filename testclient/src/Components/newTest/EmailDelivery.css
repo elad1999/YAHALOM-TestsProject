@@ -1,0 +1,14 @@
+.email-cc__disabled{
+    pointer-events: none;
+    opacity: 0.7;
+}
+.email-passing__disabled{
+    pointer-events: none;
+    opacity: 0.7;
+
+}
+.email-failed__disabled{
+    pointer-events: none;
+    opacity: 0.7;
+
+}
