@@ -7,7 +7,7 @@ class QuestionsController {
   manageQuestion(question) {
     if (question)
       if (question.id) db.editQuestion(question);
-      else {db.addQuestion(question)
+      else {question.id=new uuid
       }
   }
 }

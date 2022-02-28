@@ -4,6 +4,7 @@ const path = configData.server.path;
 
 export const saveQuestion = async (question) => {
   try {
+    console.log(question);
     const response = await axios.post(`${path}/ManageQuestion`, question);
     return response.data;
   } catch (error) {
@@ -15,6 +16,6 @@ export const getQuestions = async () => {
     const response = await axios.post(`${path}/getQuestions`);
     return response.data;
   } catch (error) {
-    return false
+    return false;
   }
 };
