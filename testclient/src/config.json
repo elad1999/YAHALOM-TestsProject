@@ -1,5 +1,5 @@
 {
     "server":{
-        "path":"http://localhost:4000/api/questions"
+        "path":"http://localhost:4000/api/Questions"
     }
 }

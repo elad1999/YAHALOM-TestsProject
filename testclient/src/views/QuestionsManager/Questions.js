@@ -1,90 +1,44 @@
 import "./Questions.css";
-import { useExpanded, useFilters, useGroupBy, usePagination, useSortBy, useTable } from 'react-table'
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect,   useState } from "react";
 import { getQuestions } from "../../Services/questionService";
+import {Link} from "react-router-dom";
+import Table from "../../Components/Table";
+import { Btn } from "../../GlobalComponents";
 const Questions = () => {
-  const [data,setData]=useState();
-  
-  useEffect(()=>{
-    getAllQuestions()
-  },[])
-  const getAllQuestions=async()=>{
-    const questions = await getQuestions()
-    setData(questions);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const result = await getQuestions();
+      setData(result);
+    })();
+  }, []);
+  const handleOnEdit=(cell)=>{
+console.log(cell)
   }
-    const columns = useMemo(
-      () => [
-        {
-          Header: 'ID',
-          accessor: 'col1', 
-        },
-        {
-          Header: 'Questions Text and Tags',
-          accessor: 'col2',
-        },
-        {
-          Header: 'Last Update',
-          accessor: 'col3',
-        },
-        {
-          Header: 'Question Type',
-          accessor: 'col4',
-        },
-        {
-          Header: '# of Tests',
-          accessor: 'col5',
-        },
-        {
-          Header: '',
-          accessor: 'opts',
-        },
-      ],
-      []
-    )
-  
-    const {
-      getTableProps,
-      getTableBodyProps,
-      headerGroups,
-      rows,
-      prepareRow,
-    } = useTable({ columns, data })
-  
-    return (
-      <table {...getTableProps()} >
-        <thead>
-          {headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
-                <th
-                  {...column.getHeaderProps()}
-                >
-                  {column.render('Header')}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map(row => {
-            prepareRow(row)
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map(cell => {
-                  return (
-                    <td
-                      {...cell.getCellProps()}                      
-                    >
-                      {cell.render('Cell')}
-                    </td>
-                  )
-                })}
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
-    )
-  
+  const columns = [
+    {
+      Header: "ID",
+      accessor: "Id",
+    },
+    {
+      Header: "Question Text ",
+      accessor: "Text",
+    },
+    {
+      Header: "Last Update",
+      accessor: "LastUpdate",
+    },
+    {
+      Header: "question Type",
+      accessor: "Type",
+    },{
+      Header:"",
+      accessor:"options",
+      Cell:({cell})=><Link to={{pathname:"/edit-question",question:cell.row.values}}><Btn onClick={()=>console.log(cell.row.values)}>edit</Btn></Link>
+    }
+    
+  ];
+
+  return <div className="Questions"><Table columns={columns} data={data}/></div>;
 };
 export default Questions;
