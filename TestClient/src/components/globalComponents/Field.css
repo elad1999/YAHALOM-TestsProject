@@ -1,0 +1,13 @@
+.Field{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    padding: var(--gap-s);
+    padding-inline: var(--gap-l);
+    text-align: end;
+    align-items: center;
+    gap: var(--gap-m);
+    row-gap: var(--gap);
+}
+.Field div{
+    text-align: start;
+}
