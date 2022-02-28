@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TestService from "../../services/testService.ts";
+import {addTest} from "../../Services/testService";
 import EmailDelivery from "./EmailDelivery";
 import GeneralInfo from "./NewTestGeneralInfo";
 import QuestionSelector from "./QuestionSelector";
@@ -75,7 +75,7 @@ const TestsForm = (props) => {
       },
       Questions: enteredSelectedQuestions,
     };
-    TestService.addTest(newTest);
+    addTest(newTest);
     console.log(newTest);
     props.OnInEdiitngStateChange();
   };

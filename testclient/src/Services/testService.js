@@ -1,35 +1,27 @@
 import http from "./httpService";
-
-export interface Test {
-    Id: Number;
-    Title: String;
-}
-
 const serverRouter = "/api/Tests/";
 
-const TestService = {
-    async getAllTests(){
+
+ export const getAllTests=async()=>{
         return await http.get(serverRouter + "getTests");
-    },
+    };
 
     // async getTestsBySubjectId(subjectId: any){
     //     return await http.get(serverRouter + "getTestsBySubject", subjectId)
     // },
 
-    async addTest(test: any){
+    export  const addTest=async(test)=>{
         return await http.post(serverRouter + "addTest", test)
-    },
+    };
 
-    async getAllSubjects(){
+    export   const getAllSubjects=async()=>{
         return await http.get(serverRouter + "getSubjects")
-    },
-    async getTestModel(){
+    };
+    export  const getTestModel=async()=>{
         return await http.get(serverRouter + "getTestModel")
-    },
-    async getAllQuestions(){
+    };
+    export  const getAllQuestions=async()=>{
         return await http.get(serverRouter + "getQuestions");
-    },
+    };
     
-}
 
-export default TestService;

@@ -1,5 +1,5 @@
 import { Component } from "react";
-import TestService from "../../services/testService.ts";
+import {getAllTests} from "../../Services/testService";
 
 class TestsTable extends Component {
   state = {
@@ -11,7 +11,7 @@ class TestsTable extends Component {
   }
 
   async getTests() {
-    const { data } = await TestService.getAllTests();
+    const { data } = await getAllTests();
     let tests = [];
     data.Exams.forEach((test) => {
       if (test.SubjectId === this.props.subject.SubjectId) {

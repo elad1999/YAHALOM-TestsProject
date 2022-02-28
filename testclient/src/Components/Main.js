@@ -1,5 +1,5 @@
 import { Component } from "react";
-import TestService from "../services/testService.ts";
+import {getAllSubjects,getTestModel} from "../Services/testService";
 import NewTest from "./newTest/NewTest";
 import "./Main.css";
 // import { Line, Field, Dropdown } from "./globalComponents/index";
@@ -23,7 +23,8 @@ class Main extends Component {
   }
 
   async getSubjects() {
-    const { data } = await TestService.getAllSubjects();
+    const { data } = await getAllSubjects();
+    console.log(data);
     this.setState({ subjects: data.Subjects });
   }
   setFirstSubject() {
@@ -31,7 +32,7 @@ class Main extends Component {
   }
 
   async getTestModel() {
-    const { data } = await TestService.getTestModel();
+    const { data } = await getTestModel();
     this.setState({ testModel: data });
   }
 

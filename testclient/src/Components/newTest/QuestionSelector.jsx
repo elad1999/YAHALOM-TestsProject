@@ -1,5 +1,5 @@
 import { Component } from "react";
-import TestService from "../../services/testService.ts";
+import {getAllQuestions} from "../../Services/testService";
 import QuestionsFilter from "./QuestionsFilter";
 import QuestionsTable from "./QuestionsTable";
 
@@ -16,7 +16,7 @@ class QuestionSelector extends Component {
   }
 
   async getQuestions() {
-    const { data } = await TestService.getAllQuestions();
+    const { data } = await getAllQuestions();
     let Questions = [];
     data.Questions.forEach((question) => {
       if (question.SubjectId === this.props.subject.SubjectId) {

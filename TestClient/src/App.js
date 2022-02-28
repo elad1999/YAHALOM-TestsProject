@@ -1,8 +1,8 @@
 import "./App.css";
 import "./Components/NewTest";
-import { Route, Routes ,Link} from "react-router-dom";
-import MainMenu from "./views/mainMenu/MainMenu";
+import { Route, Routes } from "react-router-dom";
 import { EditQuestion, QuestionsManager } from "./views";
+import Main from "./Components/Main";
 
 const App = () => {
   return (
@@ -11,8 +11,8 @@ const App = () => {
         <Routes>
           <Route path="/manage-questions" element={<QuestionsManager />}></Route>
           <Route path="/edit-question" element={<EditQuestion />}></Route>
-          <Route path="/" element={<MainMenu />}></Route>
-          <Route path="*" element={<MainMenu />}></Route>
+          <Route path="/" element={<Main />}></Route>
+          <Route path="*" element={<Main />}></Route>
         </Routes>
       </div>
     </div>
